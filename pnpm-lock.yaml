@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@nestjs/cli': ^8.0.0
   '@nestjs/common': ^8.0.0
+  '@nestjs/config': ^1.1.6
   '@nestjs/core': ^8.0.0
   '@nestjs/microservices': ^8.2.6
   '@nestjs/platform-express': ^8.0.0
@@ -18,7 +19,6 @@ specifiers:
   eslint-config-prettier: ^8.3.0
   eslint-plugin-prettier: ^4.0.0
   jest: ^27.2.5
-  prettier: ^2.3.2
   reflect-metadata: ^0.1.13
   rimraf: ^3.0.2
   rxjs: ^7.2.0
@@ -32,6 +32,7 @@ specifiers:
 
 dependencies:
   '@nestjs/common': 8.2.6_88a789cb3f20cca25c3f70fe96f41643
+  '@nestjs/config': 1.1.6_0f75cad7c3bc55c714d492fe95499bdf
   '@nestjs/core': 8.2.6_5c18cc5e3bb50296baa4bd7a9df3c313
   '@nestjs/microservices': 8.2.6_05842440808b455eff1a14b6221a041b
   '@nestjs/platform-express': 8.2.6_732a54a2558f64827b8cc4f9baac4f1f
@@ -51,9 +52,8 @@ devDependencies:
   '@typescript-eslint/parser': 5.10.1_eslint@8.7.0+typescript@4.5.5
   eslint: 8.7.0
   eslint-config-prettier: 8.3.0_eslint@8.7.0
-  eslint-plugin-prettier: 4.0.0_4660519532e4c3b0a9e5bb6623cfedf6
+  eslint-plugin-prettier: 4.0.0_89d56a99bdc3e2bea76935278b63b7d5
   jest: 27.4.7_ts-node@10.4.0
-  prettier: 2.5.1
   source-map-support: 0.5.21
   supertest: 6.2.2
   ts-jest: 27.1.3_bc464af956686ccd28ad646067711a2c
@@ -805,6 +805,22 @@ packages:
       uuid: 8.3.2
     transitivePeerDependencies:
       - debug
+    dev: false
+
+  /@nestjs/config/1.1.6_0f75cad7c3bc55c714d492fe95499bdf:
+    resolution: {integrity: sha512-HYizKt6Dr6gcZl8FmZbTfQxP0MG8oXMh+gVFT0XCwYDAq26BOKyhPsIxrKsryicVeKViRgetCUhlJY9EqaekZA==}
+    peerDependencies:
+      '@nestjs/common': ^7.0.0 || ^8.0.0
+      reflect-metadata: ^0.1.13
+      rxjs: ^6.0.0 || ^7.2.0
+    dependencies:
+      '@nestjs/common': 8.2.6_88a789cb3f20cca25c3f70fe96f41643
+      dotenv: 10.0.0
+      dotenv-expand: 5.1.0
+      lodash: 4.17.21
+      reflect-metadata: 0.1.13
+      rxjs: 7.5.2
+      uuid: 8.3.2
     dev: false
 
   /@nestjs/core/8.2.6_5c18cc5e3bb50296baa4bd7a9df3c313:
@@ -2204,6 +2220,15 @@ packages:
       webidl-conversions: 5.0.0
     dev: true
 
+  /dotenv-expand/5.1.0:
+    resolution: {integrity: sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==}
+    dev: false
+
+  /dotenv/10.0.0:
+    resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
+    engines: {node: '>=10'}
+    dev: false
+
   /ee-first/1.1.1:
     resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
     dev: false
@@ -2296,7 +2321,7 @@ packages:
       eslint: 8.7.0
     dev: true
 
-  /eslint-plugin-prettier/4.0.0_4660519532e4c3b0a9e5bb6623cfedf6:
+  /eslint-plugin-prettier/4.0.0_89d56a99bdc3e2bea76935278b63b7d5:
     resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
@@ -2309,7 +2334,6 @@ packages:
     dependencies:
       eslint: 8.7.0
       eslint-config-prettier: 8.3.0_eslint@8.7.0
-      prettier: 2.5.1
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -3790,7 +3814,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /log-symbols/4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
@@ -4205,12 +4228,6 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       fast-diff: 1.2.0
-    dev: true
-
-  /prettier/2.5.1:
-    resolution: {integrity: sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
     dev: true
 
   /pretty-format/27.4.6:
