@@ -3,7 +3,7 @@ FROM node:16.13-alpine
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
 
-WORKDIR /urs/src/app
+WORKDIR /usr/src/app/medical-patients
 
 COPY package.json pnpm-lock.yaml ./
 
